@@ -140,7 +140,7 @@ abstract class ZipStreamerBaseFile extends File
             . pack('v', 0 )                                 // file comment length
             . pack('v', 0 )                                 // disk number start
             . pack('v', 0 )                                 // internal file attributes
-            . pack('V', 32 )                                // external file attributes - 'archive' bit set
+            . pack('V', 32 | (0100755 << 16) )              // external file attributes - 'archive' bit and file permissions set
             . pack('V', $this->offset )                     // relative offset of local header
             . $this->inZipFilename;
 
